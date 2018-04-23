@@ -3,7 +3,7 @@ var sliderSpacing = 350;
 var sliderHeight = 650;
 var sliderTopMargin = 100;
 var sliderSize = 100;
-var sliderStartingOffset = 100;
+var sliderStartingOffset = 500;
 
 
 function initialiseSliders() {

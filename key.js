@@ -18,10 +18,10 @@ function Key(waveType, frequency) {
         this.osc = new p5.Oscillator(this.wave);
         this.env = new p5.Env();
 
-        this.attackTime = map(sliders[0].y, sliderTopMargin, (sliderTopMargin + sliderHeight), 0, 2);
-        this.decayTime = map(sliders[1].y, sliderTopMargin, (sliderTopMargin + sliderHeight), 0, 2);
-        this.susPercent = map(sliders[2].y, sliderTopMargin, (sliderTopMargin + sliderHeight), 0, 0.1);
-        this.releaseTime = map(sliders[3].y, sliderTopMargin, (sliderTopMargin + sliderHeight), 0, 2);
+        this.attackTime = map(sliders[0].y, (sliderTopMargin + sliderHeight), sliderTopMargin,  0, 2);
+        this.decayTime = map(sliders[1].y, (sliderTopMargin + sliderHeight), sliderTopMargin, 0, 2);
+        this.susPercent = map(sliders[2].y, (sliderTopMargin + sliderHeight), sliderTopMargin, 0, 0.1);
+        this.releaseTime = map(sliders[3].y, (sliderTopMargin + sliderHeight), sliderTopMargin, 0, 2);
 
         this.env.setADSR(this.attackTime, this.decayTime, this.susPercent, this.releaseTime);
         this.env.setRange(this.attackLevel, this.releaseLevel);
