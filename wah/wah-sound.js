@@ -1,5 +1,6 @@
 var lfo, osc, filter;
 var oscStarted = false;
+var soundStarted = false;
 
 function initialiseSound () { 
 
@@ -16,6 +17,10 @@ function initialiseSound () {
 } 
 
 function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
+
+    if (!soundStarted){
+        initialiseSound();
+    }
 
     if(!oscStarted){
         oscStarted = true;
