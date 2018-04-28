@@ -31,9 +31,11 @@ function touchMoved() {
 }
 
 function touchStarted() {
-    if (!soundStarted){
-        initialiseSound();
-        soundStarted = true;
+    if (!soundStarted) {
+        getAudioContext().resume().then(() => {
+            initialiseSound();
+            soundStarted = true;
+        });
     }
 }
 
