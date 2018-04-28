@@ -1,49 +1,32 @@
+var visualiser;
+var slider;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(50);
+    visualiser = new Visualiser();
+    slider = new Slider(150, "#ff4d4d")
 }
 
 function draw() {
-
-}
-
-function getDistance(element) {
-    return float(dist(mouseX, mouseY, element.x, element.y));
-}
-
-function mouseDragged() {
-    checkAudioContext();
-    let yVal = map(mouseY, 0, windowHeight, 50, 500);
-    let xVal = map(mouseX, 0, windowWidth, 0, 10);
-
-    updateSound(xVal, yVal, 1200, 12, 1100);
-    drawCircle();
-    return false;
-}
-
-function touchMoved() {
-    checkAudioContext();
-    let yVal = map(mouseY, 0, windowHeight, 50, 500);
-    let xVal = map(mouseX, 0, windowWidth, 0, 10);
-
-    updateSound(xVal, yVal, 1200, 12, 1100);
-    drawCircle();
-    return false;
+    background(50);
+    visualiser.draw();
+    slider.draw();
+    updateSound(slider.x, slider.y);
 }
 
 function touchStarted() {
     checkAudioContext();
+    slider.click(getDistance(slider));
     return false;
 }
 
-function drawCircle() {
-    background(50);
-    noStroke();
-    fill("#ff4d4d")
-    ellipse(mouseX, mouseY, 150, 150)
+function touchEnded() {
+    slider.release();
+    return false;
 }
 
-function checkAudioContext(){
+function checkAudioContext() {
     if (!soundStarted) {
         getAudioContext().resume().then(() => {
             initialiseSound();
@@ -51,3 +34,24 @@ function checkAudioContext(){
         });
     }
 }
+
+function getDistance(element) {
+    return float(dist(mouseX, mouseY, element.x, element.y));
+}
+
+// function mouseClicked() {
+//     checkAudioContext();
+//     slider.click(getDistance(slider));
+//     return false;
+// }
+
+// function mouseReleased() {
+//     slider.release();
+//     return false;
+// }
+
+// function touchMoved() {
+//     checkAudioContext();
+//     slider.click();
+//     return false;
+// }

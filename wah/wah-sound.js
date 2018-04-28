@@ -1,22 +1,32 @@
-var lfo, osc, filter;
+var lfo, osc, filt;
 var oscStarted = false;
 var soundStarted = false;
 
 function initialiseSound () { 
 
     lfo = new p5.Oscillator();
-    osc = new p5.SawOsc();
-    filter = new p5.Filter();
+    osc = new p5.Oscillator();
+    filt = new p5.Filter();
+
+    osc.setType('sawtooth');
+    lfo.setType('sine');
 
     lfo.disconnect();
     osc.disconnect();
-    osc.connect(filter);
+    osc.connect(filt);
 
     lfo.start();
-    osc.amp(0.1)
+    osc.amp(0.05)
 } 
 
-function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
+function updateSound(x, y) {
+
+    let lfoFreq = map(x, 0, windowHeight, 0.1, 10);
+    let oscFreq = map(y, 0, windowWidth, 50, 400);
+
+    filterFreq = 1100;
+    filterRes = 12
+    lfoAmp = 500;
 
     if (soundStarted){
 
@@ -27,9 +37,9 @@ function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
 
     lfo.freq(lfoFreq);
     osc.freq(oscFreq);
-    filter.freq(filterFreq);
-    filter.res(filterRes);
+    filt.freq(filterFreq);
+    filt.res(filterRes);
     lfo.amp(lfoAmp);
-    filter.freq(lfo);
+    filt.freq(lfo);
 }
 }
