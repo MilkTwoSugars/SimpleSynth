@@ -1,0 +1,8 @@
+{
+    "name": "Wah!",
+    "short_name": "Wah!",
+    "theme_color": "#1c8a8e",
+    "background_color": "#2196f3",
+    "display": "fullscreen",
+    "orientation": "landscape"
+  }
