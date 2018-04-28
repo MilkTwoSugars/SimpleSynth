@@ -20,6 +20,7 @@ function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
 
     if (!soundStarted){
         initialiseSound();
+        this.soundStarted = true;
     }
 
     if(!oscStarted){
