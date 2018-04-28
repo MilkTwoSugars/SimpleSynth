@@ -5,8 +5,8 @@ function Visualiser() {
         let waveform = this.fft.waveform();  // analyze the waveform
         beginShape();
         noFill();
-        strokeWeight(5);
-        stroke("#ff4d4d")
+        strokeWeight(2);
+        stroke("white")
         for (var i = 0; i < waveform.length; i++) {
             let x = map(i, 0, waveform.length, 0, width);
             let y = map(waveform[i], -1, 1, height, 0);

@@ -1,28 +1,33 @@
 var visualiser;
-var slider;
+var slider1;
+var slider2;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(50);
     visualiser = new Visualiser();
-    slider = new Slider(150, "#ff4d4d")
+    slider1 = new Slider(100, 100, 150, "#009999");
+    slider2 = new Slider(500, 500, 100, "#66d9ff");
 }
 
 function draw() {
     background(50);
     visualiser.draw();
-    slider.draw();
-    updateSound(slider.x, slider.y);
+    slider1.draw();
+    slider2.draw();
+    updateSound(slider1.x, slider1.y, slider2.x, slider2.y);
 }
 
 function touchStarted() {
     checkAudioContext();
-    slider.click(getDistance(slider));
+    slider1.click(getDistance(slider1));
+    slider2.click(getDistance(slider2));
     return false;
 }
 
 function touchEnded() {
-    slider.release();
+    slider1.release();
+    slider2.release();
     return false;
 }
 

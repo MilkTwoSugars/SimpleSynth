@@ -1,6 +1,6 @@
-function Slider(size, colour) {
-    this.x = mouseX;
-    this.y = mouseY;
+function Slider(x, y, size, colour) {
+    this.x = x;
+    this.y = y;
     this.size = size;
     this.colour = colour;
     this.dragging = false;
@@ -18,7 +18,7 @@ function Slider(size, colour) {
     }
 
     this.click = function (distance) {
-        if (distance < 75) {
+        if (distance < this.size / 2) {
             this.dragging = true;
         }
     }

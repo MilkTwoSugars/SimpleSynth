@@ -2,44 +2,74 @@ var lfo, osc, filt;
 var oscStarted = false;
 var soundStarted = false;
 
-function initialiseSound () { 
+function initialiseSound() {
 
     lfo = new p5.Oscillator();
     osc = new p5.Oscillator();
     filt = new p5.Filter();
 
-    osc.setType('sawtooth');
-    lfo.setType('sine');
+    getWaves();
 
     lfo.disconnect();
     osc.disconnect();
     osc.connect(filt);
 
     lfo.start();
-    osc.amp(0.05)
-} 
+    osc.amp(0.1)
+}
 
-function updateSound(x, y) {
+function updateSound(x1, y1, x2, y2) {
 
-    let lfoFreq = map(x, 0, windowHeight, 0.1, 10);
-    let oscFreq = map(y, 0, windowWidth, 50, 400);
+    let lfoFreq = map(x1, 0, windowWidth, 0.1, 15);
+    let oscFreq = map(y1, 0, windowHeight, 25, 400);
 
-    filterFreq = 1100;
-    filterRes = 12
-    lfoAmp = 500;
+    let filterFreq = map(x2, 0, windowWidth, 500, 1100);
+    let lfoAmp = map(y2, 0, windowHeight, 100, 500);
 
-    if (soundStarted){
+    let filterRes = 24;
 
-    if(!oscStarted){
-        oscStarted = true;
-        osc.start();
+    if (soundStarted) {
+
+        if (!oscStarted) {
+            oscStarted = true;
+            osc.start();
+        }
+
+        lfo.freq(lfoFreq);
+        osc.freq(oscFreq);
+        filt.freq(filterFreq);
+        filt.res(filterRes);
+        lfo.amp(lfoAmp);
+        filt.freq(lfo);
+    }
+}
+
+function getWaves() {
+    console.log("Checking url for waves...")
+    let lfoWave = getParameterByName('lfo'); // "lorem"
+    let oscWave = getParameterByName('osc'); // "" (present with empty value)
+
+    if(lfoWave === "sine" || lfoWave === "sawtooth" || lfoWave === "square" || lfoWave === "triangle"){
+        console.log("Setting LFO wave to " + lfoWave);
+        lfo.setType(lfoWave);
+    } else {
+        lfo.setType("sine");
     }
 
-    lfo.freq(lfoFreq);
-    osc.freq(oscFreq);
-    filt.freq(filterFreq);
-    filt.res(filterRes);
-    lfo.amp(lfoAmp);
-    filt.freq(lfo);
+    if(oscWave === "sine" || oscWave === "sawtooth" || oscWave === "square" || oscWave === "triangle"){
+        console.log("Setting OSC wave to " + oscWave);
+        osc.setType(oscWave);
+    } else {
+        osc.setType("sawtooth");
+    }
 }
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
