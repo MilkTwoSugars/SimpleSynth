@@ -6,8 +6,8 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(50);
     visualiser = new Visualiser();
-    slider1 = new Slider(100, 100, 150, "#009999");
-    slider2 = new Slider(500, 500, 100, "#66d9ff");
+    slider1 = new Slider(100, 100, 200, "#009999");
+    slider2 = new Slider(100, 100, 100, "#66d9ff");
 }
 
 function draw() {
