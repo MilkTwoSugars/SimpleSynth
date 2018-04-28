@@ -18,11 +18,7 @@ function initialiseSound () {
 
 function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
 
-    if (!soundStarted){
-        console.log("Initialising sound")
-        initialiseSound();
-        this.soundStarted = true;
-    }
+    if (soundStarted){
 
     if(!oscStarted){
         oscStarted = true;
@@ -35,4 +31,5 @@ function updateSound(lfoFreq, oscFreq, filterFreq, filterRes, lfoAmp) {
     filter.res(filterRes);
     lfo.amp(lfoAmp);
     filter.freq(lfo);
+}
 }

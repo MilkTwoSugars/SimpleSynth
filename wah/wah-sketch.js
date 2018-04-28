@@ -30,6 +30,13 @@ function touchMoved() {
     return false;
 }
 
+function touchStarted() {
+    if (!soundStarted){
+        initialiseSound();
+        soundStarted = true;
+    }
+}
+
 function drawCircle() {
     background(50);
     noStroke();
