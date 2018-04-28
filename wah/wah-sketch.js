@@ -5,7 +5,7 @@ function setup() {
 }
 
 function draw() {
-    
+
 }
 
 function getDistance(element) {
@@ -22,7 +22,16 @@ function mouseDragged() {
     return false;
 }
 
-function drawCircle(){
+function touchMoved() {
+    let yVal = map(mouseY, 0, windowHeight, 50, 500);
+    let xVal = map(mouseX, 0, windowWidth, 0, 10);
+
+    updateSound(xVal, yVal, 1200, 12, 1100);
+    drawCircle();
+    return false;
+}
+
+function drawCircle() {
     background(50);
     noStroke();
     fill("#ff4d4d")
