@@ -20,13 +20,14 @@ function initialiseSound() {
 
 function updateSound(x1, y1, x2, y2) {
 
-    let lfoFreq = map(x1, 0, windowWidth, 0.1, 15);
-    let oscFreq = map(y1, 0, windowHeight, 25, 400);
+    let lfoFreq = map(x1, 0, windowWidth, 0.1, 30);
+    let oscFreq = map(y1, 0, windowHeight, 400, 25);
 
-    let filterFreq = map(x2, 0, windowWidth, 500, 1100);
+    let filterFreq = map(x2, 0, windowWidth, 400, 1100);
     let lfoAmp = map(y2, 0, windowHeight, 100, 500);
 
-    let filterRes = 24;
+
+    let filterRes = 12;
 
     if (soundStarted) {
 
