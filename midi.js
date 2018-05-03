@@ -1,4 +1,5 @@
 var midi, data;
+var soundStarted = false;
 var keys = {};
 var count = 0;
 
@@ -80,5 +81,13 @@ function keyReleased() {
     if (keyCode === DOWN_ARROW) {
         let data = [null, 72, 127];
         playNote(data);
+    }
+}
+
+function checkAudioContext() {
+    if (!soundStarted) {
+        getAudioContext().resume().then(() => {
+            soundStarted = true;
+        });
     }
 }

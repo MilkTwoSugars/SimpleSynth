@@ -15,6 +15,7 @@ function draw() {
 }
 
 function mousePressed() {
+    checkAudioContext()
     for (var i = 0; i < sliders.length; i++) {
         sliders[i].mouseClick(getDistance(sliders[i]))
     }
