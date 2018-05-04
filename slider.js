@@ -1,16 +1,22 @@
-var sliders = [];
-var sliderSpacing = 350;
-var sliderHeight = 650;
-var sliderTopMargin = 100;
-var sliderSize = 100;
-var sliderStartingOffset = 500;
+var sliders;
+var sliderSpacing;
+var sliderHeight;
+var sliderTopMargin;
+var sliderSize;
+var sliderStartingOffset;
 
 
 function initialiseSliders() {
-    sliders.push(new Slider(sliderSpacing, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "ellipse", "orangered"));
-    sliders.push(new Slider(sliderSpacing * 2, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "rect", "deepskyblue"));
-    sliders.push(new Slider(sliderSpacing * 3, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "ellipse", "yellow"));
-    sliders.push(new Slider(sliderSpacing * 4, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "rect", "forestgreen"));
+    sliders = [];
+    sliderSpacing = windowWidth / 4;
+    sliderHeight = windowHeight / 1.5;
+    sliderTopMargin = windowHeight / 6;
+    sliderSize = windowWidth / 15;
+    sliderStartingOffset = sliderTopMargin * 3;
+    sliders.push(new Slider(sliderSpacing / 2, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "ellipse", "orangered"));
+    sliders.push(new Slider(sliderSpacing, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "rect", "deepskyblue"));
+    sliders.push(new Slider(sliderSpacing * 1.5, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "ellipse", "yellow"));
+    sliders.push(new Slider(sliderSpacing * 2, sliderTopMargin + sliderStartingOffset, sliderSize, sliderSize, "rect", "forestgreen"));
 }
 
 function Slider(xPos, yPos, shapeWidth, shapeHeight, shapeType, shapeColour) {
@@ -38,7 +44,7 @@ function Slider(xPos, yPos, shapeWidth, shapeHeight, shapeType, shapeColour) {
         stroke(100);
         line(this.line.x, this.line.y, this.line.x2, this.line.y2)
 
-        if (distance < 50) {
+        if (distance < this.w / 2) {
             this.rollover = true
         }
         else {
@@ -76,7 +82,7 @@ function Slider(xPos, yPos, shapeWidth, shapeHeight, shapeType, shapeColour) {
     }
 
     this.mouseClick = function (distance) {
-        if (distance < 50) {
+        if (distance < this.w / 2) {
             this.dragging = true;
             // If so, keep track of relative location of click to corner of rectangle
         }

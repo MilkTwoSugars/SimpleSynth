@@ -1,3 +1,9 @@
+function initialiseWaveController() {
+    waveController = null;
+    let size = windowWidth / 15
+    waveController = new WaveController(windowWidth - size, windowHeight - size, size, size);
+}
+
 function WaveController(xPos, yPos, buttonHeight, buttonWidth) {
 
     this.waveType = "sine";
@@ -15,7 +21,7 @@ function WaveController(xPos, yPos, buttonHeight, buttonWidth) {
     }
 
     this.mouseClick = function (distance) {
-        if (distance < 50) {
+        if (distance < this.w / 2) {
             this.changeWaveType();
         }
     }
